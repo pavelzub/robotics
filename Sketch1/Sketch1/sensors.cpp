@@ -23,7 +23,6 @@ LineSensor::LineSensor(int pin): pin(pin) {
 
 void LineSensor::updateInfo() {
 	float tmp = analogRead(pin);
-	//Serial.println(tmp);
 	value = tmp / 1024.f;
 }
 
@@ -65,5 +64,65 @@ void IRSensor::updateInfo(){
 			dataIndex++;
 		}
 		irrecv->resume(); // Receive the next value
+	}
+}
+
+ColorSensor::ColorSensor(int s0, int s1, int s2, int s3, int out):
+	S0(s0),
+	S1(s1),
+	S2(s2),
+	S3(s3),
+	out(out)
+{
+	pinMode(S0, OUTPUT);
+	pinMode(S1, OUTPUT);
+	pinMode(S2, OUTPUT);
+	pinMode(S3, OUTPUT);
+	pinMode(out, INPUT);
+	digitalWrite(S0, HIGH);
+	digitalWrite(S1, LOW);
+}
+
+void ColorSensor::updateInfo(){
+	auto time = millis();
+	if (time - oldTime > COLOR_DELAY) {
+		switch (index)
+		{
+		case 0:
+			digitalWrite(S2, LOW);
+			digitalWrite(S3, LOW);
+
+			values[0] = pulseIn(out, LOW);
+
+			Serial.print("R = ");
+			Serial.print(redFrequency);
+			break;
+		case 1:
+			digitalWrite(S2, HIGH);
+			digitalWrite(S3, HIGH);
+
+			values[1] = pulseIn(out, LOW);
+
+			Serial.print(" G = ");
+			Serial.print(greenFrequency);
+			break;
+		case 2:
+			digitalWrite(S2, LOW);
+			digitalWrite(S3, HIGH);
+
+			values[1] = pulseIn(out, LOW);
+
+			Serial.print(" B = ");
+			Serial.println(blueFrequency);
+		}
+
+		if (index == 2) {
+			redFrequency = values[0];
+			greenFrequency = values[1];
+			blueFrequency = values[2];
+			index = 0;
+		}
+		else
+			index++;
 	}
 }

@@ -12,5 +12,5 @@ private:
 	bool ready = false;
 	int lastIndex = 0;
 	uint8_t received_data[8];
-	int sameCount;
+	int sameCount = 0;
 };
