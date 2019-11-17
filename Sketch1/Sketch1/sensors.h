@@ -5,6 +5,7 @@
 
 #define SONAR_DELTA 50
 #define COLOR_DELAY 100
+#define COLOR_TIMEOUT 5000
 
 class Sensor {
 public:

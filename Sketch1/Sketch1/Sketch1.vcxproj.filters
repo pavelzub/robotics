@@ -36,6 +36,15 @@
     <ClInclude Include="map.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyServo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="trusters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="trusterSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sensorSystem.cpp">
@@ -45,6 +54,15 @@
       <Filter>Source Files\sensors</Filter>
     </ClCompile>
     <ClCompile Include="map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyServo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trusters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trusterSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
